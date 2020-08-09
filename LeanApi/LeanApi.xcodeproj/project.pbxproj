@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		457AC3C124E06538002D7F48 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457AC3BE24E0644F002D7F48 /* Alamofire.framework */; };
 		458E2A8624E012E0006FCDA0 /* LeanApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2A7C24E012E0006FCDA0 /* LeanApi.framework */; };
 		458E2A8B24E012E0006FCDA0 /* LeanApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E2A8A24E012E0006FCDA0 /* LeanApiTests.swift */; };
 		458E2A8D24E012E0006FCDA0 /* LeanApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 458E2A7F24E012E0006FCDA0 /* LeanApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				458E2B7024E05F1E006FCDA0 /* LeanContract.framework in Frameworks */,
+				457AC3C124E06538002D7F48 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +380,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS/";
 				INFOPLIST_FILE = LeanApi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -404,6 +407,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS/";
 				INFOPLIST_FILE = LeanApi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
