@@ -10,8 +10,8 @@
 		458E2A8624E012E0006FCDA0 /* LeanApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2A7C24E012E0006FCDA0 /* LeanApi.framework */; };
 		458E2A8B24E012E0006FCDA0 /* LeanApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E2A8A24E012E0006FCDA0 /* LeanApiTests.swift */; };
 		458E2A8D24E012E0006FCDA0 /* LeanApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 458E2A7F24E012E0006FCDA0 /* LeanApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		458E2ABC24E01346006FCDA0 /* LeanModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2ABB24E01346006FCDA0 /* LeanModel.framework */; };
-		458E2ABD24E01346006FCDA0 /* LeanModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2ABB24E01346006FCDA0 /* LeanModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		458E2B7024E05F1E006FCDA0 /* LeanContract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2B6F24E05F1E006FCDA0 /* LeanContract.framework */; };
+		458E2B7124E05F1E006FCDA0 /* LeanContract.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2B6F24E05F1E006FCDA0 /* LeanContract.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,13 +25,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		458E2ABE24E01346006FCDA0 /* Embed Frameworks */ = {
+		458E2B7224E05F1E006FCDA0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				458E2ABD24E01346006FCDA0 /* LeanModel.framework in Embed Frameworks */,
+				458E2B7124E05F1E006FCDA0 /* LeanContract.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,6 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		457AC3BE24E0644F002D7F48 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		458E2A7C24E012E0006FCDA0 /* LeanApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LeanApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E2A7F24E012E0006FCDA0 /* LeanApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeanApi.h; sourceTree = "<group>"; };
 		458E2A8024E012E0006FCDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		458E2A8A24E012E0006FCDA0 /* LeanApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeanApiTests.swift; sourceTree = "<group>"; };
 		458E2A8C24E012E0006FCDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458E2ABB24E01346006FCDA0 /* LeanModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LeanModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		458E2B6F24E05F1E006FCDA0 /* LeanContract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LeanContract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				458E2ABC24E01346006FCDA0 /* LeanModel.framework in Frameworks */,
+				458E2B7024E05F1E006FCDA0 /* LeanContract.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +110,8 @@
 		458E2ABA24E01346006FCDA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				457AC3BE24E0644F002D7F48 /* Alamofire.framework */,
+				458E2B6F24E05F1E006FCDA0 /* LeanContract.framework */,
 				458E2ABB24E01346006FCDA0 /* LeanModel.framework */,
 			);
 			name = Frameworks;
@@ -135,7 +139,7 @@
 				458E2A7824E012E0006FCDA0 /* Sources */,
 				458E2A7924E012E0006FCDA0 /* Frameworks */,
 				458E2A7A24E012E0006FCDA0 /* Resources */,
-				458E2ABE24E01346006FCDA0 /* Embed Frameworks */,
+				458E2B7224E05F1E006FCDA0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

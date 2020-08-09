@@ -5,7 +5,7 @@
       location = "group:Lean Game/Lean Game.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:LeanModel/LeanModel.xcodeproj">
+      location = "group:LeanContract/LeanContract.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:LeanApi/LeanApi.xcodeproj">

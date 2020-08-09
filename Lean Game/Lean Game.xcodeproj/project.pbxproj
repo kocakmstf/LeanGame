@@ -15,8 +15,8 @@
 		458E2A6824E012A6006FCDA0 /* Lean_GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E2A6724E012A6006FCDA0 /* Lean_GameTests.swift */; };
 		458E2AC124E01355006FCDA0 /* LeanApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2AC024E01355006FCDA0 /* LeanApi.framework */; };
 		458E2AC224E01355006FCDA0 /* LeanApi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2AC024E01355006FCDA0 /* LeanApi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		458E2AC524E01359006FCDA0 /* LeanModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2AC424E01359006FCDA0 /* LeanModel.framework */; };
-		458E2AC624E01359006FCDA0 /* LeanModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2AC424E01359006FCDA0 /* LeanModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		458E2B7424E05F2B006FCDA0 /* LeanContract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2B7324E05F2B006FCDA0 /* LeanContract.framework */; };
+		458E2B7524E05F2B006FCDA0 /* LeanContract.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2B7324E05F2B006FCDA0 /* LeanContract.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				458E2AC624E01359006FCDA0 /* LeanModel.framework in Embed Frameworks */,
+				458E2B7524E05F2B006FCDA0 /* LeanContract.framework in Embed Frameworks */,
 				458E2AC224E01355006FCDA0 /* LeanApi.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -57,6 +57,7 @@
 		458E2A6924E012A6006FCDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458E2AC024E01355006FCDA0 /* LeanApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LeanApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E2AC424E01359006FCDA0 /* LeanModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LeanModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		458E2B7324E05F2B006FCDA0 /* LeanContract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LeanContract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				458E2AC524E01359006FCDA0 /* LeanModel.framework in Frameworks */,
+				458E2B7424E05F2B006FCDA0 /* LeanContract.framework in Frameworks */,
 				458E2AC124E01355006FCDA0 /* LeanApi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +124,7 @@
 		458E2ABF24E01355006FCDA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				458E2B7324E05F2B006FCDA0 /* LeanContract.framework */,
 				458E2AC424E01359006FCDA0 /* LeanModel.framework */,
 				458E2AC024E01355006FCDA0 /* LeanApi.framework */,
 			);
