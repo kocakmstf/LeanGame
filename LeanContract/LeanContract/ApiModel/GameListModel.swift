@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GameListModel: Codable {
+public struct GameListModel: Codable {
 
   enum CodingKeys: String, CodingKey {
     case seoDescription = "seo_description"
@@ -27,7 +27,7 @@ struct GameListModel: Codable {
   var seoDescription: String?
   var noindex: Bool?
   var seoTitle: String?
-  var results: [GameModel]?
+ public var results: [GameModel]?
   var descriptionValue: String?
   var nofollowCollections: [String]?
   var next: String?
@@ -37,7 +37,7 @@ struct GameListModel: Codable {
   var seoKeywords: String?
   var count: Int?
 
-  init(from decoder: Decoder) throws {
+ public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     seoDescription = try container.decodeIfPresent(String.self, forKey: .seoDescription)
     noindex = try container.decodeIfPresent(Bool.self, forKey: .noindex)

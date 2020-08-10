@@ -8,8 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		457AC3C124E06538002D7F48 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457AC3BE24E0644F002D7F48 /* Alamofire.framework */; };
+		457AC3D524E11D9A002D7F48 /* GameListServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457AC3D424E11D9A002D7F48 /* GameListServiceApi.swift */; };
+		457AC3D724E11E55002D7F48 /* ProductionEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457AC3D624E11E55002D7F48 /* ProductionEnvironment.swift */; };
+		457AC3D924E15CD9002D7F48 /* ApiEnvironmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457AC3D824E15CD9002D7F48 /* ApiEnvironmentProtocol.swift */; };
+		457AC3DB24E162A7002D7F48 /* UrlEndpoind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457AC3DA24E162A7002D7F48 /* UrlEndpoind.swift */; };
+		457AC3DD24E165CD002D7F48 /* HttpRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457AC3DC24E165CD002D7F48 /* HttpRequestTest.swift */; };
+		457AC3E124E16951002D7F48 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 457AC3BE24E0644F002D7F48 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		458E2A8624E012E0006FCDA0 /* LeanApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2A7C24E012E0006FCDA0 /* LeanApi.framework */; };
-		458E2A8B24E012E0006FCDA0 /* LeanApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E2A8A24E012E0006FCDA0 /* LeanApiTests.swift */; };
 		458E2A8D24E012E0006FCDA0 /* LeanApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 458E2A7F24E012E0006FCDA0 /* LeanApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		458E2B7024E05F1E006FCDA0 /* LeanContract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2B6F24E05F1E006FCDA0 /* LeanContract.framework */; };
 		458E2B7124E05F1E006FCDA0 /* LeanContract.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2B6F24E05F1E006FCDA0 /* LeanContract.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -32,6 +37,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				457AC3E124E16951002D7F48 /* Alamofire.framework in Embed Frameworks */,
 				458E2B7124E05F1E006FCDA0 /* LeanContract.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -41,11 +47,15 @@
 
 /* Begin PBXFileReference section */
 		457AC3BE24E0644F002D7F48 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		457AC3D424E11D9A002D7F48 /* GameListServiceApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListServiceApi.swift; sourceTree = "<group>"; };
+		457AC3D624E11E55002D7F48 /* ProductionEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionEnvironment.swift; sourceTree = "<group>"; };
+		457AC3D824E15CD9002D7F48 /* ApiEnvironmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEnvironmentProtocol.swift; sourceTree = "<group>"; };
+		457AC3DA24E162A7002D7F48 /* UrlEndpoind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlEndpoind.swift; sourceTree = "<group>"; };
+		457AC3DC24E165CD002D7F48 /* HttpRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestTest.swift; sourceTree = "<group>"; };
 		458E2A7C24E012E0006FCDA0 /* LeanApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LeanApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E2A7F24E012E0006FCDA0 /* LeanApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeanApi.h; sourceTree = "<group>"; };
 		458E2A8024E012E0006FCDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458E2A8524E012E0006FCDA0 /* LeanApiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeanApiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		458E2A8A24E012E0006FCDA0 /* LeanApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeanApiTests.swift; sourceTree = "<group>"; };
 		458E2A8C24E012E0006FCDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458E2ABB24E01346006FCDA0 /* LeanModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LeanModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E2B6F24E05F1E006FCDA0 /* LeanContract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LeanContract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,9 +82,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		457AC3CC24E06E4C002D7F48 /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				457AC3D424E11D9A002D7F48 /* GameListServiceApi.swift */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		457AC3CF24E07026002D7F48 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				457AC3D624E11E55002D7F48 /* ProductionEnvironment.swift */,
+				457AC3DA24E162A7002D7F48 /* UrlEndpoind.swift */,
+				457AC3D824E15CD9002D7F48 /* ApiEnvironmentProtocol.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
 		458E2A7224E012E0006FCDA0 = {
 			isa = PBXGroup;
 			children = (
+				457AC3CF24E07026002D7F48 /* Environment */,
+				457AC3CC24E06E4C002D7F48 /* Contracts */,
 				458E2A7E24E012E0006FCDA0 /* LeanApi */,
 				458E2A8924E012E0006FCDA0 /* LeanApiTests */,
 				458E2A7D24E012E0006FCDA0 /* Products */,
@@ -103,8 +133,8 @@
 		458E2A8924E012E0006FCDA0 /* LeanApiTests */ = {
 			isa = PBXGroup;
 			children = (
-				458E2A8A24E012E0006FCDA0 /* LeanApiTests.swift */,
 				458E2A8C24E012E0006FCDA0 /* Info.plist */,
+				457AC3DC24E165CD002D7F48 /* HttpRequestTest.swift */,
 			);
 			path = LeanApiTests;
 			sourceTree = "<group>";
@@ -182,6 +212,7 @@
 				TargetAttributes = {
 					458E2A7B24E012E0006FCDA0 = {
 						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1160;
 					};
 					458E2A8424E012E0006FCDA0 = {
 						CreatedOnToolsVersion = 11.6;
@@ -229,6 +260,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457AC3DB24E162A7002D7F48 /* UrlEndpoind.swift in Sources */,
+				457AC3D924E15CD9002D7F48 /* ApiEnvironmentProtocol.swift in Sources */,
+				457AC3D724E11E55002D7F48 /* ProductionEnvironment.swift in Sources */,
+				457AC3D524E11D9A002D7F48 /* GameListServiceApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				458E2A8B24E012E0006FCDA0 /* LeanApiTests.swift in Sources */,
+				457AC3DD24E165CD002D7F48 /* HttpRequestTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +409,7 @@
 		458E2A9124E012E0006FCDA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9VJA9S5Z5G;
@@ -393,6 +429,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -401,6 +438,7 @@
 		458E2A9224E012E0006FCDA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9VJA9S5Z5G;
@@ -428,8 +466,10 @@
 		458E2A9424E012E0006FCDA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9VJA9S5Z5G;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = LeanApiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -446,8 +486,10 @@
 		458E2A9524E012E0006FCDA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9VJA9S5Z5G;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = LeanApiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

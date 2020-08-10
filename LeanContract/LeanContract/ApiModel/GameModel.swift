@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GameModel: Codable {
+public struct GameModel: Codable {
 
   enum CodingKeys: String, CodingKey {
     case added = "added"
@@ -60,12 +60,12 @@ struct GameModel: Codable {
   var tags: [Tags]?
   var genres: [Genres]?
   var reviewsCount: Int?
-  var slug: String?
+ public var slug: String?
   var saturatedColor: String?
   var ratingTop: Int?
   var stores: [Stores]?
 
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     added = try container.decodeIfPresent(Int.self, forKey: .added)
     backgroundImage = try container.decodeIfPresent(String.self, forKey: .backgroundImage)

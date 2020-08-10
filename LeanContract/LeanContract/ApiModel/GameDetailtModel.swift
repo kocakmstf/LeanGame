@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GameDetailModel: Codable {
+public struct GameDetailModel: Codable {
 
   enum CodingKeys: String, CodingKey {
     case parentPlatforms = "parent_platforms"
@@ -68,7 +68,7 @@ struct GameDetailModel: Codable {
   var metacriticPlatforms: [MetacriticPlatforms]?
   var moviesCount: Int?
   var redditName: String?
-  var slug: String?
+ public var slug: String?
   var backgroundImage: String?
   var additionsCount: Int?
   var alternativeNames: [String]?
@@ -117,7 +117,7 @@ struct GameDetailModel: Codable {
   var updated: String?
   var rating: Float?
 
-  init(from decoder: Decoder) throws {
+ public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     parentPlatforms = try container.decodeIfPresent([ParentPlatforms].self, forKey: .parentPlatforms)
     metacriticPlatforms = try container.decodeIfPresent([MetacriticPlatforms].self, forKey: .metacriticPlatforms)

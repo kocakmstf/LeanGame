@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		457AC3C824E06CAA002D7F48 /* GameListServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457AC3C724E06CAA002D7F48 /* GameListServiceProtocol.swift */; };
+		457AC3CB24E06D3B002D7F48 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457AC3CA24E06D3B002D7F48 /* Enums.swift */; };
+		457AC3D324E11A05002D7F48 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457AC3D224E11A05002D7F48 /* Environment.swift */; };
 		458E2B3224E05EC6006FCDA0 /* LeanContract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E2B2824E05EC6006FCDA0 /* LeanContract.framework */; };
 		458E2B3724E05EC6006FCDA0 /* LeanContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E2B3624E05EC6006FCDA0 /* LeanContractTests.swift */; };
 		458E2B3924E05EC6006FCDA0 /* LeanContract.h in Headers */ = {isa = PBXBuildFile; fileRef = 458E2B2B24E05EC6006FCDA0 /* LeanContract.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		457AC3C724E06CAA002D7F48 /* GameListServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListServiceProtocol.swift; sourceTree = "<group>"; };
+		457AC3CA24E06D3B002D7F48 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		457AC3D224E11A05002D7F48 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		458E2B2824E05EC6006FCDA0 /* LeanContract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LeanContract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E2B2B24E05EC6006FCDA0 /* LeanContract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeanContract.h; sourceTree = "<group>"; };
 		458E2B2C24E05EC6006FCDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		457AC3C924E06D1B002D7F48 /* EnumDefinitions */ = {
+			isa = PBXGroup;
+			children = (
+				457AC3D224E11A05002D7F48 /* Environment.swift */,
+				457AC3CA24E06D3B002D7F48 /* Enums.swift */,
+			);
+			path = EnumDefinitions;
+			sourceTree = "<group>";
+		};
 		458E2B1E24E05EC6006FCDA0 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +130,7 @@
 		458E2B2A24E05EC6006FCDA0 /* LeanContract */ = {
 			isa = PBXGroup;
 			children = (
+				457AC3C924E06D1B002D7F48 /* EnumDefinitions */,
 				458E2B7624E05F41006FCDA0 /* ServiceContract */,
 				458E2B4224E05EDE006FCDA0 /* ApiModel */,
 				458E2B2B24E05EC6006FCDA0 /* LeanContract.h */,
@@ -164,6 +180,7 @@
 		458E2B7624E05F41006FCDA0 /* ServiceContract */ = {
 			isa = PBXGroup;
 			children = (
+				457AC3C724E06CAA002D7F48 /* GameListServiceProtocol.swift */,
 			);
 			path = ServiceContract;
 			sourceTree = "<group>";
@@ -293,12 +310,15 @@
 				458E2B6C24E05EF4006FCDA0 /* Platform.swift in Sources */,
 				458E2B6B24E05EF4006FCDA0 /* GameModel.swift in Sources */,
 				458E2B5C24E05EF4006FCDA0 /* Years.swift in Sources */,
+				457AC3C824E06CAA002D7F48 /* GameListServiceProtocol.swift in Sources */,
 				458E2B5924E05EF4006FCDA0 /* Platforms.swift in Sources */,
 				458E2B6624E05EF4006FCDA0 /* Genres.swift in Sources */,
 				458E2B6924E05EF4006FCDA0 /* MetacriticPlatforms.swift in Sources */,
+				457AC3D324E11A05002D7F48 /* Environment.swift in Sources */,
 				458E2B6224E05EF4006FCDA0 /* Tags.swift in Sources */,
 				458E2B6424E05EF4006FCDA0 /* Clips.swift in Sources */,
 				458E2B5E24E05EF4006FCDA0 /* Stores.swift in Sources */,
+				457AC3CB24E06D3B002D7F48 /* Enums.swift in Sources */,
 				458E2B6324E05EF4006FCDA0 /* Clip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +474,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = LeanContract/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,6 +501,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = LeanContract/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
