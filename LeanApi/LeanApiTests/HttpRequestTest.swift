@@ -11,13 +11,14 @@ import LeanContract
 import LeanApi
 class HttpRequestTest: XCTestCase {
     func testGameList() throws {
+        print("test run")
         var api :GameListServiceProtocol
-        api = GameListServiceApi(.production)
-        api.fetchGameList(2, take: 10, search: "") { (result) in
+        api = GameListServiceApi(.development)
+        api.fetchGameList(1, take: 10, search: "gta5") { (result) in
             switch result{
             case  .success(let value):
                 print("success")
-                XCTAssertTrue(value.results!.count > 0)
+                XCTAssertTrue(value.results!.count > 100)
                 print(value.results?.count ?? "-1" + "game found")
                 
             case .failure(let error):

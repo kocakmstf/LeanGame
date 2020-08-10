@@ -22,6 +22,7 @@ struct ProductionEnvironment:ApiEnvironmentProtocol{
     var baseUrl: String
     init() {
         self.baseUrl="https://api.rawg.io/api/"
+        headers=["Content-Type":"application/json"]
     }
     
     /*
@@ -33,13 +34,13 @@ struct ProductionEnvironment:ApiEnvironmentProtocol{
         {
             queryParams["search"]=key
         }
-        let url = combineUrl("games/")
-        let urlEnpoint = UrlEndpoind(url:url, method: .get, parameters: queryParams, additionalHeaders: nil)
+        let url = combineUrl("games")
+        let urlEnpoint = UrlEndpoind(url:url, method: .get, parameters: queryParams, additionalHeaders: headers)
         return urlEnpoint
     }
     func GameDetailUrl(with gameId:Int) -> UrlEndpoind {
         let url = combineUrl("games/\(gameId)")
-        let urlEnpoint = UrlEndpoind(url:url, method: .get, parameters: nil, additionalHeaders: nil)
+        let urlEnpoint = UrlEndpoind(url:url, method: .get, parameters: nil, additionalHeaders: headers)
         return urlEnpoint
     }
 }
@@ -60,7 +61,7 @@ struct DevelopmentEnvironment:ApiEnvironmentProtocol{
         {
             queryParams["search"]=key
         }
-        let url = combineUrl("games/")
+        let url = combineUrl("games")
         let urlEnpoint = UrlEndpoind(url:url, method: .get, parameters: queryParams, additionalHeaders: nil)
         return urlEnpoint
     }

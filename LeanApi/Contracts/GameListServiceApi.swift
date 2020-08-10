@@ -60,11 +60,10 @@ public final class AFHttpRequest: HttpRequestProtocol{
     public  func get<T>(_ type:T.Type, with urlEndpoind: UrlEndpoind, completion: @escaping (Result<T>) -> Void)  where T:(Decodable){
         //TODO: add other endpoind attributes like params and httpheaders
         
-        AF.request(urlEndpoind.url,method: urlEndpoind.method,parameters: urlEndpoind.parameters).responseData { (response) in
+         AF.request(urlEndpoind.url,method: urlEndpoind.method,parameters: urlEndpoind.parameters,encoding:URLEncoding.queryString,headers: HTTPHeaders(urlEndpoind.additionalHeaders ?? [String:String]())).responseData { (response) in
             switch response.result {
             case .success(let data):
                 let decoder = JSONDecoder()
-            
                 do {
                     //Todo: get decoder dynamicly
                     let object = try decoder.decode(T.self, from: data)
