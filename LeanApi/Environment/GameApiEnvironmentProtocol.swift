@@ -7,18 +7,22 @@
 //
 
 import Foundation
-
+protocol BaseApiEnvironmentProtocol {
+     var baseUrl:String {get set}
+     var headers: [String: String]? {get set}
+}
 
 /*
- Base api environment protocol. Url calls should be defined here for data integrity
+ Game api environment protocol. Url calls should be defined here for data integrity
+ Game list request should conform this environment.
+ This protocol required for api calls and environment selection.
  */
-protocol ApiEnvironmentProtocol {
-    var baseUrl:String {get set}
-    var headers: [String: String]? {get set}
+protocol GameApiEnvironmentProtocol:BaseApiEnvironmentProtocol{
+   
     func GameListUrl(_ page:Int, take itemCount:Int, search key:String)->UrlEndpoind
     func GameDetailUrl(with gameId:Int)->UrlEndpoind
 }
-extension ApiEnvironmentProtocol{
+extension GameApiEnvironmentProtocol{
     func combineUrl(_ url:String) -> String {
         //TODO: try url validation...
         return baseUrl+url

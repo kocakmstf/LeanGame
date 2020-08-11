@@ -12,10 +12,14 @@ import Alamofire
 
 
 /*
+ Url management defined in environment. The reason of that is, main requester (view controller) has no interest in urls or data source. it only conforms on data. 
+ */
+
+/*
  Production environment url list.
  */
 //TODO: urls hard coded. get from plist etc.
-struct ProductionEnvironment:ApiEnvironmentProtocol{
+struct ProductionEnvironment:GameApiEnvironmentProtocol{
     
     
     var headers: [String : String]?
@@ -49,7 +53,7 @@ struct ProductionEnvironment:ApiEnvironmentProtocol{
  Development environment url list.
  */
 //TODO: urls hard coded. get from plist etc.
-struct DevelopmentEnvironment:ApiEnvironmentProtocol{
+struct DevelopmentEnvironment:GameApiEnvironmentProtocol{
     var headers: [String : String]?
     var baseUrl: String
     init() {

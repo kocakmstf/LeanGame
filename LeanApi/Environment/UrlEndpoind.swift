@@ -9,6 +9,9 @@
 import Foundation
 import Alamofire
 
+/*
+ endpoind information for http request
+ */
 public struct UrlEndpoind{
     
     var url:String

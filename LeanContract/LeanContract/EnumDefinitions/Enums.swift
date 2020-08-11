@@ -12,3 +12,7 @@ public enum Result<Value> {
     case success(Value)
     case failure(Error)
 }
+public enum Error: Swift.Error {
+    case serializationError(internal: Swift.Error)
+    case networkError(internal: Swift.Error)
+}
