@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Genres: Codable {
+public struct Genres: Codable {
 
   enum CodingKeys: String, CodingKey {
     case slug = "slug"
@@ -17,13 +17,13 @@ struct Genres: Codable {
     case id = "id"
   }
 
-  var slug: String?
-  var name: String?
-  var imageBackground: String?
-  var gamesCount: Int?
-  var id: Int?
+ public var slug: String?
+ public var name: String?
+ public var imageBackground: String?
+ public var gamesCount: Int?
+ public var id: Int?
 
-  init(from decoder: Decoder) throws {
+ public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     slug = try container.decodeIfPresent(String.self, forKey: .slug)
     name = try container.decodeIfPresent(String.self, forKey: .name)

@@ -8,21 +8,17 @@
 
 import UIKit
 
+
+let  appConfiguration:AppConfigurationProtocol = ProductionConfiguration()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow()
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        
-        if #available(iOS 13.0, *) {
-            window?.rootViewController = storyBoard.instantiateViewController(identifier: "ViewController")
-        } else {
-            // Fallback on earlier versions
-        }
-        window?.makeKeyAndVisible()
+       
+        app.router = TabbarRouter()
+        app.router?.start()
         
         // Override point for customization after application launch.
         return true
