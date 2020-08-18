@@ -18,58 +18,59 @@ protocol RouterProtocol {
 final class TabbarRouter:RouterProtocol {
     
     var window: UIWindow?
-    var tabBarController : UITabBarController?
+    var tabBarController : UITabBarController
     
     init() {
         window = UIWindow(frame: UIScreen.main.bounds)
+        tabBarController = TabBarController()
     }
     
     func start() -> Void {
-        tabBarController = TabBarController()
-        initViews()
         
-        let storyBoard = UIStoryboard.init(name: "GameListControllerStoryBoard", bundle: nil)
-        let gameListView = storyBoard.instantiateViewController(withIdentifier: "GameListController")
+
         
-        window?.rootViewController = gameListView
+    
+        
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
     }
-    func initViews() -> Void {
-        tabBarController?.view.backgroundColor = UIColor.red
-        
-        
-        
-        
-    }
+ 
 }
 
 final class TabBarController:UITabBarController{
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         initViews()
     }
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let storyBoard = UIStoryboard.init(name: "GameListControllerStoryBoard", bundle: nil)
-        tabBarController?.viewControllers = [UIViewController]()
-        let gameListView = storyBoard.instantiateViewController(withIdentifier: "GameListController")
-        let gameListView2 = storyBoard.instantiateViewController(withIdentifier: "GameListController")
-        
-        let navController = UINavigationController(rootViewController: gameListView)
-        let navController2 = UINavigationController(rootViewController: gameListView2)
-        navController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        navController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
-        
-        tabBarController?.viewControllers?.append(navController)
-        tabBarController?.viewControllers?.append(navController2)
-        
         
     }
+    func initViews() -> Void {
+         tabBarController?.view.backgroundColor = UIColor.red
+           tabBarController?.viewControllers = [UIViewController]()
+         let gamelistController = GameListControllerBuilder.create()
+        gamelistController.title = "Games"
+         let gameNavigationContainer = UINavigationController(rootViewController: gamelistController)
+         gamelistController.tabBarItem = UITabBarItem(
+                    title: "Games",
+                    image: UIImage(named: "gamesBarIcon"),
+                    selectedImage: nil)
+        
+        let favoritesController = GameDetailControllerBuilder.create(with: GamePresentationModel(id: 3884))
+               let favoritesNavigationContainer = UINavigationController(rootViewController: favoritesController)
+               favoritesController.tabBarItem = UITabBarItem(
+                          title: "Favorites",
+                          image: UIImage(named: "favoritesBarIcon"),
+                          selectedImage: nil)
+              
+        self.viewControllers = [gameNavigationContainer,favoritesNavigationContainer]
+         
+         
+         
+     }
 }
 
 let app = AppContainer()

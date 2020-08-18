@@ -11,17 +11,14 @@ import UIKit
 import AlamofireImage
 
 
-protocol GameListContollerProtocol {
+protocol GameListContollerProtocol:BaseViewControllerProtocol {
     func displayList(with gameItems:[GamePresentationModel]) -> Void
-    func showLoader() -> Void
-    func hideLoader() -> Void
-    func showErrorMessage(_ message:String) -> Void
+    
 }
 
 public final class GameListController: BaseViewController{
     var service : GameListViewModelProtocol?
     var dataSource  = [GamePresentationModel]()
-    @IBOutlet weak var viewLoader: UIView!
     var refresher = UIRefreshControl()
     var searchActive : Bool = false
     
@@ -32,12 +29,12 @@ public final class GameListController: BaseViewController{
     private var collectionViewWidth:CGFloat?
     private var collectionViewHeight:CGFloat = 128
     
-    @IBOutlet private weak var searchBar: UISearchBar!{
-        didSet{
-            searchBar.delegate = self
-        }
-    }
+    @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var collectionView: UICollectionView!
+    
+    
+    
+    
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +44,7 @@ public final class GameListController: BaseViewController{
         collectionView.delegate = self
         collectionView.dataSource = self
         service?.delegate = self
+        searchBar.delegate = self;
         loadData(self)
         setRefresher()
         
@@ -69,33 +67,21 @@ public final class GameListController: BaseViewController{
         
     }
     
+    
 }
 
 
 
 extension GameListController : GameListContollerProtocol {
-    func showErrorMessage(_ message: String) {
-        let alertController = UIAlertController(
-            title: "Error!",
-            message: message,
-            preferredStyle: .alert
-        )
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(alertController, animated: true, completion: nil)
-    }
     
-    func showLoader() {
-        viewLoader.isHidden = false
-        
-    }
     
-    func hideLoader() {
+    
+    override func hideLoader() {
         if(refresher.isRefreshing){
             refresher.endRefreshing()
         }
-        viewLoader.isHidden = true
+        super.hideLoader()
     }
-    
     
     func displayList(with gameItems:[GamePresentationModel]) -> Void{
         self.dataSource.append(contentsOf: gameItems)
@@ -105,7 +91,8 @@ extension GameListController : GameListContollerProtocol {
 }
 extension GameListController :UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO: navigate detail
+     let gameDetailView =   GameDetailControllerBuilder.create(with: self.dataSource[indexPath.row])
+        self.navigationController?.pushViewController(gameDetailView, animated: true)
     }
     
 }
@@ -138,7 +125,7 @@ extension GameListController {
 }
 
 
-//collecitonview load more
+//collectionview load more
 extension GameListController {
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == dataSource.count-1 {
@@ -146,18 +133,21 @@ extension GameListController {
         }
     }
 }
-
+//collection view data source implementation
 extension GameListController :UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //if searchbar is active, display no game for startup
         if(searchActive == true && dataSource.count == 0) {
-           collectionView.setEmptyView(title: "No game has been searched.", message: "")
+            collectionView.setEmptyView(title: "No game has been searched.", message: "")
             return dataSource.count
         }
         
-       collectionView.restore()
+        collectionView.restore() // remove no game message
         return dataSource.count
     }
     
+    //cell implemantation.
+    //todo: maybe cell presentation view can be usable
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = dataSource[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "gameViewCell", for: indexPath) as! GameItemCell
@@ -167,10 +157,11 @@ extension GameListController :UICollectionViewDataSource {
         cell.imgCover.setImage(withUrl: item.backgroundImage, and: "defaultImage")
         return cell
     }
- 
- 
+    
+    
 }
 
+//set sections and column count. column count calculated via view width
 extension GameListController : UICollectionViewDelegateFlowLayout{
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,
@@ -192,20 +183,22 @@ extension GameListController : UICollectionViewDelegateFlowLayout{
 
 extension GameListController: UISearchBarDelegate {
     
+    //when search began, clear data source, set search active and show no game message
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
         self.searchActive = true
         self.dataSource.removeAll()
         self.collectionView.reloadData()
         
     }
     
+    // after some search item count, first clear existing data for not to append, then search with new key
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if(searchText.count >= appConfiguration.gameListSearchParameterCount){
+            self.dataSource.removeAll()
             service?.listGame(search: searchText)
         }
     }
-    
+    //end editing. if no search result avaible, reload initial data
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         self.searchActive = false

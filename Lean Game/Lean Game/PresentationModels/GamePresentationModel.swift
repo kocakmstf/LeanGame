@@ -13,7 +13,21 @@ struct Link {
     var name:String
     var url: String
 }
-struct GamePresentationModel {
+struct GamePresentationModel : Equatable {
+    static func == (lhs: GamePresentationModel, rhs: GamePresentationModel) -> Bool {
+        return lhs.gameId == rhs.gameId
+    }
+    init(id:Int) {
+        self.gameId = id
+
+        genre = ""
+        gameDescription = ""
+        links = [Link]()
+        backgroundImage = ""
+        metaCriticScore = ""
+        gameName = ""
+    }
+    
     var gameId : Int
     var gameName:String
     var metaCriticScore:String
@@ -21,6 +35,8 @@ struct GamePresentationModel {
     var backgroundImage: String?
     var gameDescription: String
     var links : [Link]?
+    var redditLink: Link?
+    var websiteLink: Link?
     
     init(with gameModel:GameModel) {
         metaCriticScore = ""
@@ -59,10 +75,12 @@ struct GamePresentationModel {
             genre = gameModel.genres!.map({DefaultValueHelper.nilOrDefaultValue(of: $0.name, with: "")}).joined(separator: ", ")
           }
         if let redditUrl = gameModel.redditUrl {
-            links!.append(Link(name: "Reddit", url: redditUrl))
+            redditLink = Link(name: "Reddit", url: redditUrl)
+            links!.append(redditLink!)
         }
         if let webSiteUrl = gameModel.website {
-            links!.append(Link(name: "Web Site", url: webSiteUrl))
+            websiteLink = Link(name: "Web Site", url: webSiteUrl)
+            links!.append(websiteLink!)
         }
           
       }

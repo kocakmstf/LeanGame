@@ -21,6 +21,7 @@ protocol GameListViewModelProtocol: class {
     var searchParam: String { get set }
     
 }
+
 extension GameListViewModelProtocol {
     
     func listGame(search key: String) {
@@ -87,4 +88,10 @@ class GameListViewModel:GameListViewModelProtocol {
     
     
 }
+
+
+
+
+
+
 
