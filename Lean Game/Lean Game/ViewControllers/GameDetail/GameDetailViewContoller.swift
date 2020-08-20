@@ -9,11 +9,9 @@
 import Foundation
 import UIKit
 
-protocol GameDetailContollerProtocol:BaseViewController {
+protocol GameDetailContollerProtocol:BaseViewControllerProtocol {
     func displayGame(with game:GamePresentationModel) -> Void
-    func showLoader() -> Void
-    func hideLoader() -> Void
-    func showErrorMessage(_ message:String) -> Void
+    func updateBtnFavoriteTitle(_ isFavorite:Bool) -> Void 
 }
 final class GameDetailViewController:BaseViewController
 {
@@ -24,7 +22,7 @@ final class GameDetailViewController:BaseViewController
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var btnVisitReddit: UIButton!
     @IBOutlet weak var btnVisitWebsite: UIButton!
-    
+    var btnFavorite : UIBarButtonItem?
     
     
     var descriptionExpanded : Bool = false{
@@ -49,23 +47,35 @@ final class GameDetailViewController:BaseViewController
         if( game != nil){
             setUI(with: game!)
             service?.getGame(with: game!.gameId)
-            self.title = game?.gameName
         }
         else{
-              self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
+        btnFavorite = UIBarButtonItem()
+        btnFavorite?.target = self
+        btnFavorite!.action = #selector(onBtnFavorite)
+        self.navigationItem.rightBarButtonItem = btnFavorite
     }
     
+    @objc private func onBtnFavorite() {
+        if(service?.isFavorite(game!) != true ){
+            _ = service?.favorite(game!)
+        }
+        else
+        {
+            _ = service?.unFavorite(game!)
+        }
+    }
     
     @IBAction func onBtnReadMoreClick(_ sender: Any) {
         descriptionExpanded = !descriptionExpanded
     }
     
     @IBAction func onBtnVisitRedditClick(_ sender: Any) {
-        OpenSafari(with: game?.redditLink?.url ?? "")
+        service?.openUrl(with: game?.redditLink?.url ?? "")
     }
     @IBAction func onBtnVisitWebsiteClick(_ sender: Any) {
-        OpenSafari(with: game?.websiteLink?.url ?? "")
+        service?.openUrl(with: game?.websiteLink?.url ?? "")
     }
     
 }
@@ -76,14 +86,15 @@ extension GameDetailViewController:GameDetailContollerProtocol
         setUI(with: game)
     }
     func setUI(with game: GamePresentationModel) -> Void {
+        self.title = game.gameName
         lblName.text = game.gameName
         lblDescription.attributedText = NSMutableAttributedString(string: game.gameDescription)
         imgCover.setImage(withUrl: game.backgroundImage, and: "defaultImage")
     }
-    func OpenSafari(with urlString:String) -> Void {
-        guard let url = URL(string: urlString) else { return }
-        UIApplication.shared.open(url)
+    func updateBtnFavoriteTitle(_ isFavorite:Bool) -> Void {
+        btnFavorite?.title = isFavorite == true ? "Unfavorite" : "Favorite"
     }
+
 }
 
 

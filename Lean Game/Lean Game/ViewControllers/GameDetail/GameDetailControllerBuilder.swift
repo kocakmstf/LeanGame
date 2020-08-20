@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 final class GameDetailControllerBuilder{
     static func create(with game:GamePresentationModel) -> GameDetailViewController {
-        let storyboard = UIStoryboard(name: "GameDetailViewControllerStoryboard", bundle: nil)
+        let storyboard = UIStoryboard(name: "GameDetailView", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "GameDetailViewContoller") as! GameDetailViewController
         viewController.service = GameDetailViewModel()
         viewController.game = game

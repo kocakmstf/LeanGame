@@ -13,9 +13,15 @@ protocol AppConfigurationProtocol {
     var gameListSearchParameterCount:Int {get set}
     var gameListVerticalHorizantalCount:Int {get set}
     var gameListVerticalColumnCount:Int {get set}
+    
+    var favoriteService : FavoriteServiceProtocol {get set}
+   
 }
 
 class ProductionConfiguration:AppConfigurationProtocol {
+     
+    var favoriteService: FavoriteServiceProtocol
+    
     var gameListVerticalHorizantalCount: Int
     
     var gameListVerticalColumnCount: Int
@@ -28,6 +34,8 @@ class ProductionConfiguration:AppConfigurationProtocol {
         gameListSearchParameterCount = 3
         gameListVerticalColumnCount = 2
         gameListVerticalHorizantalCount = 1
+        favoriteService = FavoriteService()
+      
     }
 }
 

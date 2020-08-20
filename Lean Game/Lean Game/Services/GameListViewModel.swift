@@ -20,6 +20,7 @@ protocol GameListViewModelProtocol: class {
     var fetchingNextPage : Bool {get set}
     var searchParam: String { get set }
     
+    
 }
 
 extension GameListViewModelProtocol {

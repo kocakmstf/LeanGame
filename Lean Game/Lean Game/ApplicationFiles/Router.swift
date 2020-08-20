@@ -59,7 +59,7 @@ final class TabBarController:UITabBarController{
                     image: UIImage(named: "gamesBarIcon"),
                     selectedImage: nil)
         
-        let favoritesController = GameDetailControllerBuilder.create(with: GamePresentationModel(id: 3884))
+        let favoritesController = FavoritesViewControllerBuilder.create()
                let favoritesNavigationContainer = UINavigationController(rootViewController: favoritesController)
                favoritesController.tabBarItem = UITabBarItem(
                           title: "Favorites",
@@ -77,4 +77,5 @@ let app = AppContainer()
 
 final class AppContainer {
     var  router : RouterProtocol?
+   
 }

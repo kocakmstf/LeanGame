@@ -13,13 +13,27 @@ struct Link {
     var name:String
     var url: String
 }
+extension GamePresentationModel{
+    func isfavorited() -> Bool {
+        return appConfiguration.favoriteService.isFavorite(self)
+    }
+    func Reversefavorite()  -> Bool{
+        if( appConfiguration.favoriteService.isFavorite(self) == true){
+          return  appConfiguration.favoriteService.unFavorite(self)
+        }
+        else{
+           return appConfiguration.favoriteService.favorite(self)
+        }
+    }
+}
+
 struct GamePresentationModel : Equatable {
     static func == (lhs: GamePresentationModel, rhs: GamePresentationModel) -> Bool {
         return lhs.gameId == rhs.gameId
     }
     init(id:Int) {
         self.gameId = id
-
+        
         genre = ""
         gameDescription = ""
         links = [Link]()
@@ -40,12 +54,12 @@ struct GamePresentationModel : Equatable {
     
     init(with gameModel:GameModel) {
         metaCriticScore = ""
-          genre = ""
-          gameDescription = ""
-          links = [Link]()
+        genre = ""
+        gameDescription = ""
+        links = [Link]()
         
         self.gameId = DefaultValueHelper.nilOrDefaultValue(of: gameModel.id, with: -1)
-      
+        
         self.gameName = DefaultValueHelper.nilOrDefaultValue(of: gameModel.name, with: "UnKnown")
         self.backgroundImage = gameModel.backgroundImage
         if let score = gameModel.metacritic {
@@ -59,21 +73,21 @@ struct GamePresentationModel : Equatable {
     }
     
     init(with gameModel:GameDetailModel) {
-          metaCriticScore = ""
-          genre = ""
-          gameDescription = ""
-          links = [Link]()
+        metaCriticScore = ""
+        genre = ""
+        gameDescription = ""
+        links = [Link]()
         
         self.gameId = DefaultValueHelper.nilOrDefaultValue(of: gameModel.id, with: -1)
         self.backgroundImage = DefaultValueHelper.nilOrDefaultValue(of: gameModel.backgroundImage, with: "")
         self.gameName = DefaultValueHelper.nilOrDefaultValue(of: gameModel.name, with: "UnKnown")
         self.gameDescription = DefaultValueHelper.nilOrDefaultValue(of: gameModel.descriptionRaw, with: "No Description Defined") //todo: default value constant
-          if let score = gameModel.metacritic {
-              self.metaCriticScore = String(score)
-          }
-          if (gameModel.genres != nil && gameModel.genres!.count > 0 ){
+        if let score = gameModel.metacritic {
+            self.metaCriticScore = String(score)
+        }
+        if (gameModel.genres != nil && gameModel.genres!.count > 0 ){
             genre = gameModel.genres!.map({DefaultValueHelper.nilOrDefaultValue(of: $0.name, with: "")}).joined(separator: ", ")
-          }
+        }
         if let redditUrl = gameModel.redditUrl {
             redditLink = Link(name: "Reddit", url: redditUrl)
             links!.append(redditLink!)
@@ -82,24 +96,24 @@ struct GamePresentationModel : Equatable {
             websiteLink = Link(name: "Web Site", url: webSiteUrl)
             links!.append(websiteLink!)
         }
-          
-      }
+        
+    }
     
     
 }
 class DefaultValueHelper {
-   static func nilOrDefaultValue(of character:String?, with defaultValue:String) -> String {
+    static func nilOrDefaultValue(of character:String?, with defaultValue:String) -> String {
         guard character != nil else {
-           return defaultValue
+            return defaultValue
         }
         return character!
     }
     static func nilOrDefaultValue(of numberValue:Int?, with defaultValue:Int) -> Int {
-          guard numberValue != nil else {
-             return defaultValue
-          }
-          return numberValue!
-      }
+        guard numberValue != nil else {
+            return defaultValue
+        }
+        return numberValue!
+    }
 }
 
 

@@ -14,26 +14,31 @@ protocol FavoriteServiceProtocol {
     func isFavorite(_ game:GamePresentationModel) -> Bool
 }
 
-
-
 //favorite service static data implementation
-class FavoriteService {
+class FavoriteService:FavoriteServiceProtocol {
     private static var models = [GamePresentationModel]()
     func gameList() -> [GamePresentationModel] {
         return FavoriteService.models
     }
     func favorite(_ game:GamePresentationModel) -> Bool {
         FavoriteService.models.append(game)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationNameConstants.addFavorites), object: game)
         return true
     }
     
+    
     func unFavorite(_ game:GamePresentationModel) -> Bool {
+        var unfavoriteSuccessfull = false
         if let indice = FavoriteService.models.firstIndex(of: game)
         {
-            FavoriteService.models.remove(at:indice)
-            return true
+            FavoriteService.models.remove(at: indice)
+            unfavoriteSuccessfull = true
+            
         }
-        return false
+        if(unfavoriteSuccessfull){
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationNameConstants.removedFavorites), object: game)
+        }
+        return unfavoriteSuccessfull
     }
     
     func isFavorite(_ game:GamePresentationModel) -> Bool {

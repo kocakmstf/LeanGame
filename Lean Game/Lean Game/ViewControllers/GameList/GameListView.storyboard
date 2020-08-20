@@ -85,9 +85,9 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <constraints>
-                                            <constraint firstAttribute="trailingMargin" secondItem="g0B-92-VFx" secondAttribute="trailing" constant="-8" id="1OD-l0-Tcy"/>
-                                            <constraint firstItem="g0B-92-VFx" firstAttribute="top" secondItem="5Bs-fh-yma" secondAttribute="topMargin" constant="-8" id="7H1-7g-97a"/>
-                                            <constraint firstItem="g0B-92-VFx" firstAttribute="leading" secondItem="5Bs-fh-yma" secondAttribute="leadingMargin" constant="-8" id="lNa-dW-Jng"/>
+                                            <constraint firstItem="g0B-92-VFx" firstAttribute="top" secondItem="5Bs-fh-yma" secondAttribute="topMargin" constant="-8" id="KRP-hh-f6A"/>
+                                            <constraint firstItem="g0B-92-VFx" firstAttribute="leading" secondItem="5Bs-fh-yma" secondAttribute="leadingMargin" constant="-8" id="e6p-3O-4z8"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="g0B-92-VFx" secondAttribute="trailing" constant="-8" id="yz6-9M-6qR"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imgCover" destination="ZIo-gH-a6b" id="wPu-cv-tec"/>

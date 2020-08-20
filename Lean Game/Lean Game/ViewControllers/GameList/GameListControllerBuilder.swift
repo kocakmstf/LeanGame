@@ -11,7 +11,7 @@ import UIKit
 
 final class GameListControllerBuilder {
     static func create() -> GameListController {
-        let storyboard = UIStoryboard(name: "GameListControllerStoryBoard", bundle: nil)
+        let storyboard = UIStoryboard(name: "GameListView", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "GameListController") as! GameListController
         viewController.service = GameListViewModel()
     
