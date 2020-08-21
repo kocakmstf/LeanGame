@@ -28,6 +28,7 @@ protocol GameListViewModelProtocol: class {
 extension GameListViewModelProtocol {
     
     func listGame(search key: String) {
+        //if search key defined, set for next page
         searchParam = key
         page = 0
         listNextPage()

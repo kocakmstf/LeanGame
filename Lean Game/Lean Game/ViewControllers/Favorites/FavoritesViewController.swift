@@ -39,6 +39,21 @@ extension FavoritesViewController :FavoritesControllerProtocol{
     }
     func updateTitle() {
         self.title = "Favorites(\(dataSource.count))"
+        self .setEmptyBackground()
+    }
+    /*
+     set empty view if datasource null
+     */
+    func setEmptyBackground() -> Void {
+        if(self.tblFavorites != nil){
+                   if(dataSource.count == 0)
+                   {
+                       self.tblFavorites.setEmptyView(title: "There is no favourites found.", message: "")
+                   }
+                   else{
+                       self.tblFavorites.restore()
+                   }
+               }
     }
     
     func inserted(toFavorites model: GamePresentationModel) {

@@ -67,9 +67,6 @@ final class TabBarController:UITabBarController{
                           selectedImage: nil)
               
         self.viewControllers = [gameNavigationContainer,favoritesNavigationContainer]
-         
-         
-         
      }
 }
 
