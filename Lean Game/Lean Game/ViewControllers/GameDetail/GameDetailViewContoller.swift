@@ -16,14 +16,38 @@ protocol GameDetailContollerProtocol:BaseViewControllerProtocol {
 final class GameDetailViewController:BaseViewController
 {
     @IBOutlet weak var imgCover: UIImageView!
-    var service : GameDetailViewModelProtocol?
+    var service : GameDetailViewModelProtocol?{
+        didSet{
+            service?.delegate = self
+        }
+    }
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var btnReadMoreLess: UIButton!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var btnVisitReddit: UIButton!
     @IBOutlet weak var btnVisitWebsite: UIButton!
-    var btnFavorite : UIBarButtonItem?
     
+    private let numberOfLinesOfLblDescription = 4
+    
+    var btnFavorite : UIBarButtonItem?
+    var game: GamePresentationModel?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        lblDescription.numberOfLines = numberOfLinesOfLblDescription // initial numbe rof lines
+        if( game != nil){
+            setUI(with: game!)
+            service?.getGame(with: game!.gameId)
+        }
+        else{
+            self.dismiss(animated: true, completion: nil)
+        }
+        //set favorite button
+        btnFavorite = UIBarButtonItem()
+        btnFavorite?.target = self
+        btnFavorite!.action = #selector(onBtnFavorite)
+        self.navigationItem.rightBarButtonItem = btnFavorite
+    }
     
     var descriptionExpanded : Bool = false{
         didSet{
@@ -32,30 +56,13 @@ final class GameDetailViewController:BaseViewController
                 lblDescription.numberOfLines = 0
             }
             else{
-                lblDescription.numberOfLines = 4
+                lblDescription.numberOfLines = numberOfLinesOfLblDescription
                 btnReadMoreLess.setTitle("Read More", for: .normal)
             }
         }
     }
     
-    var game: GamePresentationModel?
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        service = GameDetailViewModel()
-        service?.delegate=self
-        lblDescription.numberOfLines = 4
-        if( game != nil){
-            setUI(with: game!)
-            service?.getGame(with: game!.gameId)
-        }
-        else{
-            self.dismiss(animated: true, completion: nil)
-        }
-        btnFavorite = UIBarButtonItem()
-        btnFavorite?.target = self
-        btnFavorite!.action = #selector(onBtnFavorite)
-        self.navigationItem.rightBarButtonItem = btnFavorite
-    }
+    
     
     @objc private func onBtnFavorite() {
         if(service?.isFavorite(game!) != true ){
@@ -94,7 +101,7 @@ extension GameDetailViewController:GameDetailContollerProtocol
     func updateBtnFavoriteTitle(_ isFavorite:Bool) -> Void {
         btnFavorite?.title = isFavorite == true ? "Unfavorite" : "Favorite"
     }
-
+    
 }
 
 

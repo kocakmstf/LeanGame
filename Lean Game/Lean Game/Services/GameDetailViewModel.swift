@@ -13,7 +13,8 @@ import LeanApi
 
 
 protocol GameDetailViewModelProtocol: class {
-    var api :GameListServiceProtocol {get}
+    var api :GameListServiceProtocol? {get set}
+    var favoriteApi : FavoriteServiceProtocol? {get set}
     func getGame(with id: Int) -> Void
     var delegate: GameDetailContollerProtocol? {get set}
     func openUrl(with urlString:String) -> Void
@@ -26,13 +27,12 @@ protocol GameDetailViewModelProtocol: class {
 
 
 class GameDetailViewModel:GameDetailViewModelProtocol {
-    var api: GameListServiceProtocol
-    var favoriteApi : FavoriteServiceProtocol
+
+    var api: GameListServiceProtocol?
+    var favoriteApi : FavoriteServiceProtocol?
     var delegate: GameDetailContollerProtocol?
     
     init() {
-        api = GameListServiceApi(appConfiguration.environment)
-        favoriteApi = FavoriteService()
         NotificationCenter.default.addObserver(self, selector: #selector(self.addToFavorites(notification:)), name: NSNotification.Name(rawValue: NotificationNameConstants.addFavorites), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.removedFavorites(notification:)), name: NSNotification.Name(rawValue: NotificationNameConstants.removedFavorites), object: nil)
     }
@@ -45,7 +45,7 @@ class GameDetailViewModel:GameDetailViewModelProtocol {
     }
     func getGame(with id: Int) {
         self.delegate?.showLoader();
-        api.fetchGameDetail(with: id) { [weak self] (result) in
+        api?.fetchGameDetail(with: id) { [weak self] (result) in
             guard let self = self else { return }
             self.delegate?.hideLoader()
             switch result{
@@ -53,7 +53,7 @@ class GameDetailViewModel:GameDetailViewModelProtocol {
                 
                 let game = GamePresentationModel(with: value)
                 self.delegate?.displayGame(with: game)
-                self.delegate?.updateBtnFavoriteTitle(self.favoriteApi.isFavorite(game))
+                self.delegate?.updateBtnFavoriteTitle(self.favoriteApi?.isFavorite(game) ?? false)
             case .failure (let error):
                 self.delegate?.showErrorMessage("Error Occured:#\(error.localizedDescription)")
             }
@@ -64,15 +64,20 @@ class GameDetailViewModel:GameDetailViewModelProtocol {
         UIApplication.shared.open(url)
     }
     func favorite(_ game: GamePresentationModel) -> Bool {
-        return favoriteApi.favorite(game)
+        return favoriteApi?.favorite(game) ?? false
     }
     
     func unFavorite(_ game: GamePresentationModel) -> Bool {
-        return favoriteApi.unFavorite(game)
+        return favoriteApi?.unFavorite(game) ?? false
     }
     
     func isFavorite(_ game: GamePresentationModel) -> Bool {
-        return favoriteApi.isFavorite(game)
+        return favoriteApi?.isFavorite(game) ?? false
+    }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     

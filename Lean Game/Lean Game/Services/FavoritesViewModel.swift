@@ -12,6 +12,7 @@ protocol FavoritesViewModelProtocol {
     func listGames() -> Void
     func UnFavorite(the game:GamePresentationModel) -> Void
     var delegate:FavoritesControllerProtocol? {get set}
+    var service : FavoriteServiceProtocol? {get set}
     
 }
 
@@ -40,5 +41,8 @@ public class FavoritesViewModel:FavoritesViewModelProtocol{
     }
     func UnFavorite(the game:GamePresentationModel) -> Void {
         _ = service?.unFavorite(game)
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }

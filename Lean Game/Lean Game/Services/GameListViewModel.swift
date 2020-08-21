@@ -9,27 +9,29 @@
 import Foundation
 import LeanContract
 import LeanApi
+import UIKit
 
 protocol GameListViewModelProtocol: class {
-    var api :GameListServiceProtocol {get}
+    var api :GameListServiceProtocol? {get set}
     func listGame(search key: String) -> Void
     func listGame() -> Void
-     func listNextPage() -> Void
+    func listNextPage() -> Void
     var page : Int {get set}
     var delegate: GameListContollerProtocol? {get set}
     var fetchingNextPage : Bool {get set}
     var searchParam: String { get set }
-    
-    
+    func isGameDetailOpened(with game:GamePresentationModel) -> Bool
+    func setGameDetailOpened(with game: GamePresentationModel) -> Void
+    func cellBackgroudColor(with game:GamePresentationModel) -> UIColor
 }
 
 extension GameListViewModelProtocol {
     
     func listGame(search key: String) {
-           searchParam = key
-           page = 0
-           listNextPage()
-       }
+        searchParam = key
+        page = 0
+        listNextPage()
+    }
     func listGame() -> Void {
         searchParam = ""
         page = 0
@@ -44,17 +46,14 @@ extension GameListViewModelProtocol {
 }
 
 class GameListViewModel:GameListViewModelProtocol {
-   
-    
+    private var detailOpenedGameList = [GamePresentationModel]()
     var searchParam: String = ""
-    
     var fetchingNextPage: Bool = false
     var page: Int
     var delegate: GameListContollerProtocol?
-    var api: GameListServiceProtocol
+    var api: GameListServiceProtocol?
     
     init() {
-        api = GameListServiceApi(appConfiguration.environment)
         page = 1
     }
     
@@ -63,8 +62,8 @@ class GameListViewModel:GameListViewModelProtocol {
             return
         }
         fetchingNextPage = true
-         self.delegate?.showLoader()
-        api.fetchGameList(nextPage(), take: 20, search: searchParam) {[weak self] (result) in
+        self.delegate?.showLoader()
+        api?.fetchGameList(nextPage(), take: 20, search: searchParam) {[weak self] (result) in
             guard let self = self else { return }
             self.fetchingNextPage = false
             self.delegate?.hideLoader()
@@ -83,11 +82,26 @@ class GameListViewModel:GameListViewModelProtocol {
             }
         }
     }
+    func isGameDetailOpened(with game: GamePresentationModel) -> Bool {
+        if detailOpenedGameList.firstIndex(of: game) != nil
+        {
+            return true
+        }
+        return false
+    }
     
-    
-    
-    
-    
+    func setGameDetailOpened(with game: GamePresentationModel) -> Void {
+        if detailOpenedGameList.firstIndex(of: game) == nil
+        {
+            detailOpenedGameList.append(game)
+        }
+    }
+    func cellBackgroudColor(with game: GamePresentationModel) -> UIColor {
+        if(isGameDetailOpened(with: game)){
+            return UIColor(red: 224.0/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1)
+        }
+        return UIColor.clear
+    }
 }
 
 

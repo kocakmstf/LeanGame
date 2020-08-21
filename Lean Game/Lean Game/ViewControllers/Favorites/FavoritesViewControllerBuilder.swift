@@ -12,6 +12,8 @@ class FavoritesViewControllerBuilder{
 static func create() -> FavoritesViewController {
     let storyboard = UIStoryboard(name: "FavoritesView", bundle: nil)
     let viewController = storyboard.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoritesViewController
+    viewController.favoriteService = FavoritesViewModel()
+    viewController.favoriteService?.service = FavoriteService()
     
 
     return viewController

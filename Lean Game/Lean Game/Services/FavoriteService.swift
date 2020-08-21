@@ -7,10 +7,16 @@
 //
 
 import Foundation
+
+
 protocol FavoriteServiceProtocol {
+    //fetchs the favorated games
     func gameList() -> [GamePresentationModel]
+    //adds game to favorites
     func favorite(_ game:GamePresentationModel) -> Bool
+    //removes game from favorites
     func unFavorite(_ game:GamePresentationModel) -> Bool
+    //confirm if the game in favorites
     func isFavorite(_ game:GamePresentationModel) -> Bool
 }
 

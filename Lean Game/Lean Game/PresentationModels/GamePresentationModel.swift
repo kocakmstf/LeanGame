@@ -13,19 +13,6 @@ struct Link {
     var name:String
     var url: String
 }
-extension GamePresentationModel{
-    func isfavorited() -> Bool {
-        return appConfiguration.favoriteService.isFavorite(self)
-    }
-    func Reversefavorite()  -> Bool{
-        if( appConfiguration.favoriteService.isFavorite(self) == true){
-          return  appConfiguration.favoriteService.unFavorite(self)
-        }
-        else{
-           return appConfiguration.favoriteService.favorite(self)
-        }
-    }
-}
 
 struct GamePresentationModel : Equatable {
     static func == (lhs: GamePresentationModel, rhs: GamePresentationModel) -> Bool {

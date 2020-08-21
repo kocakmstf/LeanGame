@@ -13,6 +13,8 @@ protocol FavoritesControllerProtocol:BaseViewControllerProtocol {
     func updateTitle() -> Void
     func inserted(toFavorites model:GamePresentationModel) -> Void
     func removed(fromFavorites model:GamePresentationModel) -> Void
+    var favoriteService : FavoritesViewModelProtocol? {get set}
+    
 }
 
 final class FavoritesViewController:BaseViewController{
@@ -22,7 +24,6 @@ final class FavoritesViewController:BaseViewController{
     @IBOutlet weak var tblFavorites: UITableView!
     
     override func viewDidLoad() {
-        favoriteService = FavoritesViewModel()
         favoriteService?.delegate = self
         favoriteService?.listGames()
         self.tblFavorites.delegate = self

@@ -18,12 +18,10 @@ class HttpRequestTest: XCTestCase {
             switch result{
             case  .success(let value):
                 print("success")
-                XCTAssertTrue(value.results!.count > 100)
-                print(value.results?.count ?? "-1" + "game found")
+                XCTAssertTrue(value.results!.count > 0)
                 
             case .failure(let error):
                 XCTAssertTrue(1==0)
-                print(error.localizedDescription)
             }
         }
     }
@@ -38,7 +36,6 @@ class HttpRequestTest: XCTestCase {
                 
             case .failure(let error):
                 XCTAssertTrue(1==0)
-                print(error.localizedDescription)
             }
         }
     }

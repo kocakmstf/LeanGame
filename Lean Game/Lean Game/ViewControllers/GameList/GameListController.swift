@@ -13,11 +13,14 @@ import AlamofireImage
 
 protocol GameListContollerProtocol:BaseViewControllerProtocol {
     func displayList(with gameItems:[GamePresentationModel]) -> Void
-    
 }
 
 public final class GameListController: BaseViewController{
-    var service : GameListViewModelProtocol?
+    var service : GameListViewModelProtocol?{
+        didSet{
+            service?.delegate = self
+        }
+    }
     var dataSource  = [GamePresentationModel]()
     var refresher = UIRefreshControl()
     var searchActive : Bool = false
@@ -31,7 +34,7 @@ public final class GameListController: BaseViewController{
     
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var collectionView: UICollectionView!
-    
+
     
     
     
@@ -39,15 +42,18 @@ public final class GameListController: BaseViewController{
     public override func viewDidLoad() {
         super.viewDidLoad()
         updateCollectionViewWidth(to: self.collectionView.frame.size)
-        self.view.backgroundColor = UIColor.green
-        service = GameListViewModel()
         collectionView.delegate = self
         collectionView.dataSource = self
-        service?.delegate = self
         searchBar.delegate = self;
-        loadData(self)
+        service?.listGame()
         setRefresher()
         
+    }
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if(self.dataSource.count>0){
+            self.collectionView.reloadData()
+        }
     }
     
     //collectionview refresher
@@ -73,26 +79,30 @@ public final class GameListController: BaseViewController{
 
 
 extension GameListController : GameListContollerProtocol {
-    
-    
-    
     override func hideLoader() {
         if(refresher.isRefreshing){
             refresher.endRefreshing()
         }
         super.hideLoader()
     }
-    
     func displayList(with gameItems:[GamePresentationModel]) -> Void{
+        let fixInsetGlich = self.dataSource.count == 0
         self.dataSource.append(contentsOf: gameItems)
         self.collectionView.reloadData()
+        if(fixInsetGlich){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                 self.collectionView.reloadData()
+            }
+        }
         
     }
 }
 extension GameListController :UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-     let gameDetailView =   GameDetailControllerBuilder.create(with: self.dataSource[indexPath.row])
+        let game = self.dataSource[indexPath.row]
+        let gameDetailView =   GameDetailControllerBuilder.create(with: game)
         self.navigationController?.pushViewController(gameDetailView, animated: true)
+        service?.setGameDetailOpened(with: game)
     }
     
 }
@@ -141,7 +151,6 @@ extension GameListController :UICollectionViewDataSource {
             collectionView.setEmptyView(title: "No game has been searched.", message: "")
             return dataSource.count
         }
-        
         collectionView.restore() // remove no game message
         return dataSource.count
     }
@@ -155,6 +164,7 @@ extension GameListController :UICollectionViewDataSource {
         cell.lblGenre.text = item.genre
         cell.lblMetaCriticScore.text = item.metaCriticScore
         cell.imgCover.setImage(withUrl: item.backgroundImage, and: "defaultImage")
+        cell.backgroundColor = service?.cellBackgroudColor(with: item)
         return cell
     }
     
