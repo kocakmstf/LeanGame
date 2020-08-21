@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQh-4S-StH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQh-4S-StH">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -62,15 +62,25 @@
                                                     <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cls-vZ-0Sb">
+                                                    <rect key="frame" x="0.0" y="138" width="414" height="1"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="pLe-gR-yHF"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="0hn-q0-yvX" secondAttribute="trailing" constant="20" id="3mw-zu-VAB"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cls-vZ-0Sb" secondAttribute="trailing" id="8aA-Tk-Duy"/>
                                                 <constraint firstItem="0hn-q0-yvX" firstAttribute="leading" secondItem="FMp-Qy-qbs" secondAttribute="leading" id="8hN-96-ZdA"/>
+                                                <constraint firstAttribute="bottom" secondItem="Cls-vZ-0Sb" secondAttribute="bottom" constant="1" id="9UD-rm-4md"/>
                                                 <constraint firstItem="0hn-q0-yvX" firstAttribute="bottom" secondItem="bdX-Ef-PsU" secondAttribute="bottom" id="Aui-Cv-5De"/>
                                                 <constraint firstAttribute="trailing" secondItem="FMp-Qy-qbs" secondAttribute="trailing" constant="20" id="BQE-Eo-0dH"/>
                                                 <constraint firstItem="0hn-q0-yvX" firstAttribute="top" secondItem="W6t-kU-HWS" secondAttribute="bottom" constant="8.5" id="GRY-HQ-Lb6"/>
                                                 <constraint firstItem="bdX-Ef-PsU" firstAttribute="centerY" secondItem="2um-4x-ls2" secondAttribute="centerY" id="Kwq-0Z-1Kb"/>
                                                 <constraint firstItem="W6t-kU-HWS" firstAttribute="leading" secondItem="FMp-Qy-qbs" secondAttribute="leading" id="Ld5-jw-mqn"/>
+                                                <constraint firstItem="Cls-vZ-0Sb" firstAttribute="leading" secondItem="2um-4x-ls2" secondAttribute="leading" id="Ojl-oT-eHJ"/>
                                                 <constraint firstItem="W6t-kU-HWS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FMp-Qy-qbs" secondAttribute="bottom" priority="900" constant="8" id="ff2-Yr-m4g"/>
                                                 <constraint firstItem="g2D-bW-VvZ" firstAttribute="leading" secondItem="W6t-kU-HWS" secondAttribute="trailing" constant="7.5" id="gOM-4u-mJ6"/>
                                                 <constraint firstItem="FMp-Qy-qbs" firstAttribute="leading" secondItem="bdX-Ef-PsU" secondAttribute="trailing" constant="8" id="gV8-9T-VGY"/>
