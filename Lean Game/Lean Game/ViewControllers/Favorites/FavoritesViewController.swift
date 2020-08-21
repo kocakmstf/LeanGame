@@ -41,6 +41,9 @@ extension FavoritesViewController :FavoritesControllerProtocol{
         self.title = "Favorites(\(dataSource.count))"
         self .setEmptyBackground()
     }
+    /*
+     set empty view if datasource null
+     */
     func setEmptyBackground() -> Void {
         if(self.tblFavorites != nil){
                    if(dataSource.count == 0)

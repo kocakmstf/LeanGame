@@ -28,6 +28,7 @@ class FavoriteService:FavoriteServiceProtocol {
     }
     func favorite(_ game:GamePresentationModel) -> Bool {
         FavoriteService.models.append(game)
+        //notification used like kvo for favorite service. 
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationNameConstants.addFavorites), object: game)
         return true
     }
