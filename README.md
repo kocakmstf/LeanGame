@@ -6,7 +6,7 @@ Carthage used for project. Go project directory,call "make carthage_build" in te
 
 # Project Structure:
 
-Project structure depends on mvc pattern via mvvm approach. Not using real mvvm to manage controller but using protocols to manage dependencies and blind comminucation ). Used frameworks for web service calls and common conract library between web service and main application [like SOA](https://en.wikipedia.org/wiki/Service-oriented_architecture. Used router approach to manage navigations. 
+Project structure depends on mvc pattern via mvvm approach. Not using real mvvm to manage controller but using protocols to manage dependencies and blind comminucation ). Used frameworks for web service calls and common conract library between web service and main application ![like SOA](https://en.wikipedia.org/wiki/Service-oriented_architecture. Used router approach to manage navigations. 
 
 Lean Api is the alomofire implementation of web service calls. 
 Lean contract is the main contract between web services or any other implementations between main application.
